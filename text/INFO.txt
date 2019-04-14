@@ -1,0 +1,33 @@
+This template was created for personal use. You may tweak it as you like.
+Normally it should be located under
+~/.local/share/kdevappwizard/templates/Cpp_CMake.
+
+3/7/2016: I updated it, in order to be able to work with regex.
+
+20/2/2017: Updated the inner CMakeList.txt in order to build shared libs if the user needs to.
+Just uncomment what is needed and append the names that correspond to your libraries source files.
+
+March - 2017: Fixed a typo in a CMakeList.txt and give the ability to use <> for including as well.
+CMakeList.txt now uses include_directories( ${CMAKE_SOURCE_DIR}/src/headers ) in order to find the .h files
+
+Use add_library() in order to *create* one from your code.
+Use target_link_libraries( logcat_symbolizer somelib) in order to link your code to an external library.
+example (let's say you need BOOST) : target_link_libraries( logcat_symbolizer ${Boost_LIBRARIES} )
+---
+
+"headers" directory should contain any additional header you may write for consistency.
+"src" directory should contain any .cc or .cpp file you may write for consistency.
+*You have to edit* CMakeList.txt and add these files with their respective
+directory.
+
+Example how your project shoulde be structured:
+HEADERS:
+#{PROJECTFOLDER}/src/headers/blahblah.h
+
+SRC:
+#{PROJECTFOLDER}/src/logcat_symbolizer.cpp
+but
+#{PROJECTFOLDER}/example.cpp ->*NOT recommended* <-
+
+
+ For any question, c&c please contact me @ petross404@gmail.com

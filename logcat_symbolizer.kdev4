@@ -1,0 +1,25 @@
+[Project]
+Name=logcat_symbolizer
+Manager=KDevCMakeManager
+VersionControl=kdevgit
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=logcat_symbolizer Launcher
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
+Dependency Action=Nothing
+EnvironmentGroup=
+Executable=file:///home/artur/projects/logcat_symbolizer/build/bin/logcat_symbolizer
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Project Target=logcat_symbolizer
+Use External Terminal=true
+Working Directory=
+isExecutable=true
