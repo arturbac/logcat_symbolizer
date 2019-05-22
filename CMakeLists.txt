@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.12.0)
 project(logcat_symbolizer CXX)
 include(CheckCXXCompilerFlag)
 
@@ -25,6 +25,12 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" ST
         #enable all warnings
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
     endif()
+    check_cxx_compiler_flag(-Weverything HAVE_WEVERYTHING)
+    if (HAVE_WEVERYTHING)
+        #enable all warnings
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weverything -Wno-c++98-compat")
+    endif()
+
 
     #First check for C++17; if not check for C++14 as fallback
     check_cxx_compiler_flag(-std=c++17 COMPILER_SUPPORTS_CXX17)
@@ -44,14 +50,6 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" ST
       # using Visual Studio C++
 endif()
 
-#find_package(package_name version REQUIRED)
-#EXAMPLE! ->
-#find_package( Boost 1.60 COMPONENTS system filesystem REQUIRED )
-#include_directories( ${Boost_INCLUDE_DIR} )
-
-#Conditional compilation, platform specific code
-#if(some_platform_here)
-#	include_directories("include/some_platform_here")
-#endif()
+find_package( Boost 1.60 COMPONENTS system filesystem program_options thread REQUIRED )
 
 add_subdirectory(src)
