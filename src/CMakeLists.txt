@@ -15,8 +15,19 @@ add_definitions(-DGIT_BRANCH=${GIT_BRANCH})
 
 add_executable(logcat_symbolizer )
 
-target_sources(logcat_symbolizer PRIVATE
- main.cpp )
+target_include_directories( logcat_symbolizer
+ PRIVATE
+    include 
+  )
+  
+target_sources(logcat_symbolizer
+   PRIVATE
+     main.cc
+     logcat_parser.cc
+     text_outputter.cc
+     retext_outputter.cc
+     )
+     
 target_link_libraries( logcat_symbolizer PRIVATE  
   Boost::program_options
   Boost::system
