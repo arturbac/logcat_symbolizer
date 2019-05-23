@@ -29,3 +29,15 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${SANITIZE_ASAN_FLAGS} ${SANITIZE_UBSAN_FLAG
 ```
 I use too -fuse-ld=lld
 
+# collecting data form log cat
+
+just
+adb -s DEVICE_ID logcat --clear
+adb -s DEVICE_ID logcat >log.txt
+
+run application
+
+# processing output
+ - ReText ```./logcat_symbolizer -l log.txt -r some_directory_for_retext```
+ - plan text ```./logcat_symbolizer -l log.txt -o plain_text.txt```
+ - stdout ```./logcat_symbolizer -l log.txt```
